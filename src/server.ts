@@ -19,7 +19,8 @@ app.get("/products", (request, response) => {
 //rota para recuperar o corpo da requisição - insomnia, json no body
 app.post("/products", (request, response) => {
   const { name, price } = request.body;
-  response.send(`Produto ${name} custa ${price}`);
+  //response.send(`Produto ${name} custa $${price}`);
+  response.status(201).json({ name, price });
 });
 
 
