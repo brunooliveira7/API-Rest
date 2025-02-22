@@ -6,11 +6,12 @@ const PORT = 3333;
 //inicializa o express
 const app = express();
 
-app.get("/products/:id/:user", (request, response) => {
-  //recupera o parâmetro id da rota - /products/1
-  const { id, user } = request.params;
+//rota na raiz da aplicação
+app.get("/products", (request, response) => {
+  //recuperar os parâmetros da requisição
+  const { page, limit } = request.query;
 
-  response.send(`Produto ${id} do usuário ${user}`);
+  response.send(`Pagina ${page} de limite ${limit}`);
 });
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
