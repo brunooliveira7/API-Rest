@@ -1,4 +1,5 @@
 import express from "express";
+import { myMiddleware } from "./middlewares/my-middlewares";
 
 ///porta que o servidor vai rodar
 const PORT = 3333;
@@ -8,6 +9,9 @@ const app = express();
 
 //vai permitir que o express entenda o formato json
 app.use(express.json());
+
+//chama o middleware de  forma global(serve para todas as rotas)
+app.use(myMiddleware);
 
 //rota na raiz da aplicação - método get no browser
 app.get("/products", (request, response) => {
@@ -20,6 +24,7 @@ app.get("/products", (request, response) => {
 app.post("/products", (request, response) => {
   const { name, price } = request.body;
   //response.send(`Produto ${name} custa $${price}`);
+
   response.status(201).json({ name, price });
 });
 
