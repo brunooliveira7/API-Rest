@@ -11,10 +11,11 @@ const app = express();
 app.use(express.json());
 
 //chama o middleware de  forma global(serve para todas as rotas)
-app.use(myMiddleware);
+//app.use(myMiddleware);
 
 //rota na raiz da aplicação - método get no browser
-app.get("/products", (request, response) => {
+//middleware de forma local em uma rota especifica
+app.get("/products", myMiddleware, (request, response) => {
   //recuperar os parâmetros da requisição
   const { page, limit } = request.query;
   response.send(`Pagina ${page} de limite ${limit}`);
