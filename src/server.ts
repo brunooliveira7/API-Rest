@@ -14,19 +14,19 @@ app.use(express.json());
 //app.use(myMiddleware);
 
 //rota na raiz da aplicação - método get no browser
-//middleware de forma local em uma rota especifica
-app.get("/products", myMiddleware, (request, response) => {
+app.get("/products", (request, response) => {
   //recuperar os parâmetros da requisição
   const { page, limit } = request.query;
   response.send(`Pagina ${page} de limite ${limit}`);
 });
 
 //rota para recuperar o corpo da requisição - insomnia, json no body
-app.post("/products", (request, response) => {
+//middleware de forma local em uma rota especifica
+app.post("/products", myMiddleware, (request, response) => {
   const { name, price } = request.body;
   //response.send(`Produto ${name} custa $${price}`);
 
-  response.status(201).json({ name, price });
+  response.status(201).json({ name, price, user_id: request.user_id });
 });
 
 
