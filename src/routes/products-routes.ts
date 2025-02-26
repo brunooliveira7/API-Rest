@@ -1,24 +1,20 @@
 //Router - organizar as rotas da aplicação de forma modular e reutilizável
 import { Router } from "express";
 import { myMiddleware } from "../middlewares/my-middlewares";
+import { ProductsController } from "../controllers/ProductsController";
 
 const productsRoutes = Router();
 
-//rota na raiz da aplicação - método get no browser
-productsRoutes.get("/:id", (request, response) => {
-  //recuperar os parâmetros da requisição
-  const { page, limit } = request.query;
+//instancia do controller
+const productsController = new ProductsController();
 
-  response.send(`Pagina ${page} de limite ${limit}`);
-});
+//rota na raiz da aplicação - método get no browser
+//chama o controller para executar o método index
+productsRoutes.get("/", productsController.index);
 
 //rota para recuperar o corpo da requisição - insomnia, json no body
 //middleware de forma local em uma rota especifica
-productsRoutes.post("/", myMiddleware, (request, response) => {
-  const { name, price } = request.body;
-  //response.send(`Produto ${name} custa $${price}`);
-
-  response.status(201).json({ name, price, user_id: request.user_id });
-});
+//chama o controller para executar o método create
+productsRoutes.post("/", myMiddleware, productsController.create);
 
 export { productsRoutes };
