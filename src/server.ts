@@ -23,12 +23,14 @@ app.use(routes);
 
 //rota para tratar erros
 app.use((error: any, request: Request, response: Response, _: NextFunction) => {
+  //erro do cliente
   if (error instanceof AppError) {
     response.status(error.statusCode).json({
       message: error.message,
     });
   }
 
+  //erro do servidor
   response.status(500).json({
     message: error.message,
   });
