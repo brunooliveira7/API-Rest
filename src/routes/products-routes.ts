@@ -1,7 +1,7 @@
 //Router - organizar as rotas da aplicação de forma modular e reutilizável
 import { Router } from "express";
 import { myMiddleware } from "../middlewares/my-middlewares";
-import { ProductsController } from "../controllers/ProductsController";
+import { ProductsController } from "../controllers/products-controller";
 
 const productsRoutes = Router();
 
