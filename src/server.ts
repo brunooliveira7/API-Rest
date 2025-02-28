@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
+import { ZodError } from "zod";
 
 import { routes } from "./routes";
 
@@ -27,6 +28,15 @@ app.use((error: any, request: Request, response: Response, _: NextFunction) => {
   if (error instanceof AppError) {
     response.status(error.statusCode).json({
       message: error.message,
+    });
+  }
+
+  //verifica se o erro é do zod
+  if (error instanceof ZodError) {
+    response.status(400).json({
+      message: "Validation error!",
+      //relata os erros encontrados
+      issues: error.format(),
     });
   }
 
