@@ -22,10 +22,10 @@ class ProductsController {
 
   //método de criação
   create(request: Request, response: Response) {
-    //validar os tipos de dados da requisição com o zod
+    //define os tipos de dados da requisição com o zod
     const bodySchema = z.object({
       name: z.string(),
-      price: z.number(),
+      price: z.number()
     });
 
     //validar os dados da requisição, se não forem válidos, lança um erro

@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
+
 import { ZodError } from "zod";
 
 import { routes } from "./routes";
