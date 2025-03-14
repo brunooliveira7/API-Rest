@@ -25,11 +25,12 @@ class ProductsController {
     //define os tipos de dados da requisição com o zod
     const bodySchema = z.object({
       name: z
-        //garante que o nome seja uma string, não pode ser vazio, não pode ter espaços em branco, deve ter pelo menos 6 caracteres
+        //garante que o nome seja uma string, não pode ter espaços em branco, deve ter pelo menos 6 caracteres
         .string({ required_error: "Name is required" })
         .trim()
         .min(6, { message: "Name must be 6 or more characters" }),
       price: z
+      //garante que o preço seja um número, não pode ser negativo
         .number({ required_error: "Price is required" })
         .positive({ message: "Price must be positive" }),
     });
