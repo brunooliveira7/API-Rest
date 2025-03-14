@@ -24,8 +24,8 @@ class ProductsController {
   create(request: Request, response: Response) {
     //define os tipos de dados da requisição com o zod
     const bodySchema = z.object({
-      name: z.string(),
-      price: z.number()
+      name: z.string({ required_error: "Name is required" }),
+      price: z.number({ required_error: "Price is required" }),
     });
 
     //validar os dados da requisição, se não forem válidos, lança um erro
