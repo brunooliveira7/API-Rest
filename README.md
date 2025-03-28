@@ -1,1 +1,1 @@
-API-Rest referente ao estudo de Node.js.
+API-Rest referente ao estudo de Node.js utilizando TypeScript.
