@@ -1,4 +1,4 @@
-<h1 align="center"> </h1>
+<h1 align="center"> API Rest </h1>
 
 API-Rest referente ao estudo de Node.js utilizando TypeScript.
 
